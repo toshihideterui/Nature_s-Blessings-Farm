@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(sass:*)",
+      "Bash(npx sass:*)",
+      "Bash(echo:*)"
+    ]
+  }
+}
