@@ -1789,7 +1789,7 @@ h2 {
       @media (max-width: $mq-breakpoint) {
         padding: 40px 20px 38px;
         border-radius: 50px;
-        height: 450px;
+        height: auto;
       }
 
       h2 {
@@ -1802,10 +1802,10 @@ h2 {
         margin-bottom: 20px;
 
         @media (max-width: $mq-breakpoint) {
-          font-size: 26px;
+          font-size: 30px;
           letter-spacing: 0;
-          width: 162px;
-          height: 40px;
+          width: 100%;
+          height: auto;
           line-height: 40px;
           margin: 0 auto 20px;
         }
@@ -1818,7 +1818,7 @@ h2 {
         line-height: 1.8;
 
         @media (max-width: $mq-breakpoint) {
-          font-size: 14px;
+          font-size: 18px;
         }
       }
 
@@ -1847,7 +1847,7 @@ h2 {
           width: 100%;
           max-width: 280px;
           height: 70px;
-          font-size: 16px;
+          font-size: 20px;
           margin: 20px auto 0 auto;
         }
 
