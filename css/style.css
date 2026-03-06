@@ -617,7 +617,7 @@ h2 {
   width: 337px;
   height: 109px;
   position: absolute;
-  right: 120px;
+  right: max(20px, calc(50vw - 563px));
   bottom: 30px;
   text-align: left;
   transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
@@ -639,6 +639,12 @@ h2 {
   opacity: 0;
   visibility: hidden;
   transform: translateX(100px);
+}
+
+@media (max-width: 767px) {
+  .main .FV .FV__chohoukei1111.is-hidden {
+    transform: translateX(-100px);
+  }
 }
 
 .main .FV .FV__chohoukei1111 .FV__chohoukei1111--news {
@@ -946,10 +952,11 @@ h2 {
   max-width: none;
   background-color: #fff;
   border-radius: 0 50px 50px 0;
-  padding: 72px 60px 60px 203px;
+  padding: 72px 60px 60px max(20px, calc(50vw - 480px));
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
-  width: 1163px;
-  height: 730px;
+  width: min(100%, calc(50vw + 480px));
+  height: auto;
+  min-height: 730px;
   margin-left: 0;
   box-sizing: border-box;
   position: relative;
@@ -1248,6 +1255,7 @@ h2 {
   .main .question .question__inner .question1 {
     border-radius: 30px;
     padding: 30px 29px 30px 51px;
+    background-color: #fff;
   }
 }
 
@@ -1563,6 +1571,7 @@ h2 {
     margin: 30px auto 0;
     text-align: center;
     color: #8ac253;
+    background-color: #fff;
     border: 2px solid #8ac253;
     border-radius: 50px;
     padding: 0;
@@ -1575,12 +1584,12 @@ h2 {
 @media (min-width: 768px) {
   .main .infomation .infomation__inner {
     max-width: 1200px;
-    gap: 50px;
+    gap: 5%;
   }
 
   .main .infomation .infomation__inner .infomation__innerleft {
-    width: auto;
-    flex-shrink: 0;
+    width: 35%;
+    flex-shrink: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -1604,14 +1613,12 @@ h2 {
 
   .main .infomation .infomation__inner .infomation__innerleft .infomation__innerleft--box {
     font-size: 16px;
-    width: 400px;
-    height: 105px;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
     line-height: 2.2;
     list-style: none;
     padding: 0;
-    transform: scaleX(0.9);
-    transform-origin: left;
-    white-space: nowrap;
   }
 
   .main .infomation .infomation__inner .infomation__innerleft .infomation__innerleft--box li {
@@ -1641,8 +1648,10 @@ h2 {
   }
 
   .main .infomation .infomation__inner .infomation__innerright {
-    width: 683px;
-    height: 438px;
+    width: 60%;
+    max-width: 683px;
+    height: auto;
+    min-height: 438px;
     background-color: #FFFFFF;
     color: #555555;
     border-radius: 100px 0px 0px 100px;
@@ -1651,7 +1660,7 @@ h2 {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     margin-right: 0;
     box-sizing: border-box;
-    flex-shrink: 0;
+    flex-shrink: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1964,8 +1973,12 @@ h2 {
   background-color: #f7b560;
   color: #fff;
   border-radius: 30px;
-  padding: 60px 40px;
+  padding: 20px 40px;
   max-width: 960px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -2024,6 +2037,8 @@ h2 {
   border-radius: 50px;
   width: 300px;
   height: 70px;
+  min-height: 70px;
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2040,15 +2055,6 @@ h2 {
     font-size: 20px;
     margin: 20px auto 0 auto;
   }
-}
-
-.main .contact .contact__inner .contact__inner--btn {
-  /*&:hover { 
-    // ★修正: ホバー時は背景を緑に、文字を白にする
-    background-color: #93C572;
-    color: #fff;
-    opacity: 1; 
-  }*/
 }
 
 .main .contact .contact__inner .contact__text-wrapper {
