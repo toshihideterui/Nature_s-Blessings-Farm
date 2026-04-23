@@ -22,6 +22,458 @@
 
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <style>
+    /* ========================================
+       お知らせ一覧セクション
+    ======================================== */
+    .news-section {
+      padding: 80px 20px;
+      background-color: #f9f9f9;
+    }
+    @media (max-width: 767px) {
+      .news-section {
+        padding: 60px 20px;
+      }
+    }
+
+    .news-section__inner {
+      max-width: 960px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* カテゴリタブ */
+    .news-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 767px) {
+      .news-tabs {
+        gap: 8px;
+        margin-bottom: 24px;
+      }
+    }
+
+    .news-tab {
+      padding: 10px 28px;
+      border-radius: 50px;
+      border: 1px solid #8ac253;
+      background-color: #fff;
+      color: #555;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .news-tab.is-active,
+    .news-tab:hover {
+      background-color: #8ac253;
+      color: #fff;
+    }
+
+    /* 記事リスト外枠 */
+    .news-list {
+      background-color: #fff;
+      border-radius: 20px;
+      padding: 10px 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    @media (max-width: 767px) {
+      .news-list {
+        background-color: transparent;
+        padding: 0;
+        box-shadow: none;
+        border-radius: 0;
+      }
+    }
+
+    .news-list__wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    @media (max-width: 767px) {
+      .news-list__wrap {
+        gap: 16px;
+      }
+    }
+
+    /* 記事アイテム PC: 横並び */
+    .news-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 30px;
+      padding: 30px 0;
+      border-bottom: 1px solid #eee;
+      text-decoration: none;
+      color: #555;
+      transition: opacity 0.3s;
+    }
+    .news-item:last-child {
+      border-bottom: none;
+    }
+    .news-item:hover {
+      opacity: 0.75;
+    }
+
+    /* 記事アイテム SP: カード型 */
+    @media (max-width: 767px) {
+      .news-item {
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        border-bottom: none;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        background-color: #fff;
+      }
+    }
+
+    /* サムネイル */
+    .news-item__thumb {
+      width: 200px;
+      min-width: 200px;
+      height: 130px;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .news-item__thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    @media (max-width: 767px) {
+      .news-item__thumb {
+        width: 100%;
+        min-width: unset;
+        height: 180px;
+        border-radius: 0;
+      }
+    }
+
+    /* SP: 画像右上のカテゴリバッジ */
+    .news-item__thumb-badge {
+      display: none;
+    }
+    @media (max-width: 767px) {
+      .news-item__thumb-badge {
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #8ac253;
+        color: #fff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 4px 12px;
+        border-radius: 50px;
+      }
+    }
+
+    /* 本文エリア */
+    .news-item__body {
+      flex: 1;
+    }
+    @media (max-width: 767px) {
+      .news-item__body {
+        padding: 12px 16px 16px;
+      }
+    }
+
+    .news-item__meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .news-item__date {
+      font-size: 14px;
+      color: #555;
+      font-family: 'Archivo Narrow', sans-serif;
+    }
+
+    .news-item__cat {
+      background-color: #8ac253;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 3px 12px;
+      border-radius: 50px;
+    }
+    /* SP: catバッジは画像上に出すので非表示 */
+    @media (max-width: 767px) {
+      .news-item__cat {
+        display: none;
+      }
+    }
+
+    .news-item__title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    @media (max-width: 767px) {
+      .news-item__title {
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+    }
+
+    .news-item__excerpt {
+      font-size: 14px;
+      color: #777;
+      line-height: 1.7;
+    }
+    @media (max-width: 767px) {
+      .news-item__excerpt {
+        font-size: 13px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+
+    /* ページネーション */
+    .news-pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 40px;
+    }
+
+    .news-pagination__item {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      border: 1px solid #ddd;
+      color: #555;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .news-pagination__item.is-active,
+    .news-pagination__item:hover {
+      background-color: #8ac253;
+      color: #fff;
+      border-color: #8ac253;
+    }
+    .news-pagination__item--arrow {
+      font-size: 16px;
+    }
+
+    /* ========================================
+       お問い合わせフォームセクション
+    ======================================== */
+    .contact-form-section {
+      padding: 80px 20px;
+      background-color: #fff;
+    }
+    @media (max-width: 767px) {
+      .contact-form-section {
+        padding: 60px 20px;
+      }
+    }
+
+    .contact-form-section__inner {
+      max-width: 960px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .contact-form-section__lead {
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 50px;
+    }
+    @media (max-width: 767px) {
+      .contact-form-section__lead {
+        text-align: left;
+        margin-bottom: 30px;
+      }
+    }
+
+    /* フォームボックス */
+    .contact-form-box {
+      background-color: #f9f9f9;
+      border-radius: 20px;
+      padding: 60px 100px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    @media (max-width: 767px) {
+      .contact-form-box {
+        padding: 30px 20px;
+        border-radius: 16px;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 36px;
+    }
+    @media (max-width: 767px) {
+      .form-group {
+        margin-bottom: 24px;
+      }
+    }
+
+    .form-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 12px;
+    }
+
+    .form-required {
+      background-color: #8ac253;
+      color: #fff;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* セレクト */
+    .form-select-wrap {
+      position: relative;
+    }
+    .form-select-wrap::after {
+      content: '';
+      position: absolute;
+      top: 42%;
+      right: 18px;
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid #8ac253;
+      border-bottom: 2px solid #8ac253;
+      transform: rotate(45deg);
+      pointer-events: none;
+    }
+
+    .form-select {
+      width: 280px;
+      padding: 14px 40px 14px 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      color: #aaa;
+      background-color: #fff;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .form-select:focus {
+      outline: none;
+      border-color: #8ac253;
+    }
+    @media (max-width: 767px) {
+      .form-select {
+        width: 100%;
+      }
+    }
+
+    /* 入力フィールド */
+    .form-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      color: #555;
+      font-family: 'Noto Sans JP', sans-serif;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+      background-color: #fff;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: #8ac253;
+    }
+
+    /* テキストエリア */
+    .form-textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      color: #555;
+      font-family: 'Noto Sans JP', sans-serif;
+      box-sizing: border-box;
+      resize: vertical;
+      min-height: 180px;
+      transition: border-color 0.3s;
+      background-color: #fff;
+    }
+    .form-textarea:focus {
+      outline: none;
+      border-color: #8ac253;
+    }
+
+    /* 送信ボタン */
+    .form-submit-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+    }
+    @media (max-width: 767px) {
+      .form-submit-wrap {
+        margin-top: 30px;
+      }
+    }
+
+    .form-submit-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 280px;
+      height: 60px;
+      background-color: #fff;
+      color: #8ac253;
+      border: 2px solid #8ac253;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      font-family: 'Noto Sans JP', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .form-submit-btn:hover {
+      background-color: #8ac253;
+      color: #fff;
+    }
+    @media (max-width: 767px) {
+      .form-submit-btn {
+        width: 100%;
+        max-width: 280px;
+        height: 55px;
+        font-size: 17px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -367,11 +819,171 @@
       </div>
     </div>
 
+    <!-- ========== お知らせ一覧セクション ========== -->
+    <div class="news-section" id="news">
+      <div class="news-section__inner">
+        <h2>お知らせ一覧</h2>
+        <div class="line"><img src="img/title-line.svg" alt=""></div>
+
+        <!-- カテゴリタブ -->
+        <div class="news-tabs">
+          <div class="news-tab is-active" data-cat="all">すべて</div>
+          <div class="news-tab" data-cat="cat1">カテゴリー1</div>
+          <div class="news-tab" data-cat="cat2">カテゴリー2</div>
+          <div class="news-tab" data-cat="cat3">カテゴリー3</div>
+        </div>
+
+        <!-- 記事リスト -->
+        <div class="news-list">
+          <div class="news-list__wrap">
+
+            <a href="#" class="news-item" data-cat="cat1">
+              <div class="news-item__thumb">
+                <img src="img/logo-2.svg" alt="" style="object-fit:contain;padding:20px;">
+                <span class="news-item__thumb-badge">カテゴリー1</span>
+              </div>
+              <div class="news-item__body">
+                <div class="news-item__meta">
+                  <span class="news-item__date">YYYY.MM.DD</span>
+                  <span class="news-item__cat">カテゴリー1</span>
+                </div>
+                <p class="news-item__title">タイトルが入ります。タイトルが入ります。タイトルが入ります。</p>
+                <p class="news-item__excerpt">本文の抜粋が入ります。本文の抜粋が入ります。本文の抜粋が入ります。本文の抜粋が入ります。本文の抜粋が入ります。本文の抜粋が入ります。</p>
+              </div>
+            </a>
+
+            <a href="#" class="news-item" data-cat="cat1">
+              <div class="news-item__thumb">
+                <img src="img/work-bokujo01.png" alt="">
+                <span class="news-item__thumb-badge">カテゴリー1</span>
+              </div>
+              <div class="news-item__body">
+                <div class="news-item__meta">
+                  <span class="news-item__date">YYYY.MM.DD</span>
+                  <span class="news-item__cat">カテゴリー1</span>
+                </div>
+                <p class="news-item__title">タイトルが入ります。タイトルが入ります。タイトルが入ります。</p>
+                <p class="news-item__excerpt">本文の抜粋が入ります。本文の抜粋が入ります。本文の抜粋が入ります。本文の抜粋が入ります。本文の抜粋が入ります。本文の抜粋が入ります。</p>
+              </div>
+            </a>
+
+            <a href="#" class="news-item" data-cat="cat2">
+              <div class="news-item__thumb">
+                <img src="img/work-bokujo02.png" alt="">
+                <span class="news-item__thumb-badge">カテゴリー2</span>
+              </div>
+              <div class="news-item__body">
+                <div class="news-item__meta">
+                  <span class="news-item__date">YYYY.MM.DD</span>
+                  <span class="news-item__cat">カテゴリー2</span>
+                </div>
+                <p class="news-item__title">タイトルが入ります。タイトルが入ります。タイトルが入ります。</p>
+                <p class="news-item__excerpt">本文の抜粋が入ります。本文の抜粋が入ります。本文の抜粋が入ります。本文の抜粋が入ります。本文の抜粋が入ります。本文の抜粋が入ります。</p>
+              </div>
+            </a>
+
+            <a href="#" class="news-item" data-cat="cat3">
+              <div class="news-item__thumb">
+                <img src="img/work-bokujo03.png" alt="">
+                <span class="news-item__thumb-badge">カテゴリー3</span>
+              </div>
+              <div class="news-item__body">
+                <div class="news-item__meta">
+                  <span class="news-item__date">YYYY.MM.DD</span>
+                  <span class="news-item__cat">カテゴリー3</span>
+                </div>
+                <p class="news-item__title">タイトルが入ります。タイトルが入ります。タイトルが入ります。</p>
+                <p class="news-item__excerpt">本文の抜粋が入ります。本文の抜粋が入ります。本文の抜粋が入ります。本文の抜粋が入ります。本文の抜粋が入ります。本文の抜粋が入ります。</p>
+              </div>
+            </a>
+
+          </div>
+        </div>
+
+        <!-- ページネーション -->
+        <div class="news-pagination">
+          <a href="#" class="news-pagination__item news-pagination__item--arrow">‹</a>
+          <a href="#" class="news-pagination__item is-active">1</a>
+          <a href="#" class="news-pagination__item">2</a>
+          <a href="#" class="news-pagination__item">3</a>
+          <a href="#" class="news-pagination__item news-pagination__item--arrow">›</a>
+        </div>
+
+      </div>
+    </div>
+    <!-- /お知らせ一覧セクション -->
+
+    <!-- ========== お問い合わせフォームセクション ========== -->
+    <div class="contact-form-section" id="contact">
+      <div class="contact-form-section__inner">
+        <h2>お問い合わせ</h2>
+        <div class="line"><img src="img/title-line.svg" alt=""></div>
+        <p class="contact-form-section__lead">お仕事のご相談、農園体験、牧場の見学、その他ご質問など、お気軽にお問い合わせください。</p>
+
+        <div class="contact-form-box">
+          <form action="#" method="post">
+
+            <div class="form-group">
+              <label class="form-label">
+                お問い合わせ種別
+                <span class="form-required">必須</span>
+              </label>
+              <div class="form-select-wrap">
+                <select class="form-select" name="category">
+                  <option value="" disabled selected>選択してください</option>
+                  <option value="1">農園体験について</option>
+                  <option value="2">牧場見学について</option>
+                  <option value="3">お仕事のご相談</option>
+                  <option value="4">その他</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="name">
+                お名前
+                <span class="form-required">必須</span>
+              </label>
+              <input class="form-input" type="text" id="name" name="name">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email">
+                メールアドレス
+                <span class="form-required">必須</span>
+              </label>
+              <input class="form-input" type="email" id="email" name="email">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="tel">電話番号</label>
+              <input class="form-input" type="tel" id="tel" name="tel">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">
+                お問い合わせ内容
+                <span class="form-required">必須</span>
+              </label>
+              <textarea class="form-textarea" id="message" name="message"></textarea>
+            </div>
+
+            <div class="form-submit-wrap">
+              <button type="submit" class="form-submit-btn">確認する</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- /お問い合わせフォームセクション -->
+
+    <!-- ========== お問い合わせCTA ========== -->
     <div class="contact">
       <div class="contact__inner">
         <h2>お問い合わせ</h2>
         <p class="contact__inner--p1">お仕事のご相談、農園体験、牧場の見学、その他ご質問<br>お気軽にお問い合わせください。</p>
-        <a href="contact.html" class="contact__inner--btn">お問い合わせ</a>
+        <a href="#contact" class="contact__inner--btn">お問い合わせ</a>
         <div class="contact__text-wrapper">
           <div class="contact__inner--info">
             <span class="contact__inner--tel-label">問い合わせ電話 :</span>
@@ -419,6 +1031,22 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script src="js/script.js"></script>
+  <script>
+    $(document).ready(function () {
+      // お知らせカテゴリタブ絞り込み
+      $('.news-tab').on('click', function () {
+        $('.news-tab').removeClass('is-active');
+        $(this).addClass('is-active');
+        const cat = $(this).data('cat');
+        if (cat === 'all') {
+          $('.news-item').show();
+        } else {
+          $('.news-item').hide();
+          $('.news-item[data-cat="' + cat + '"]').show();
+        }
+      });
+    });
+  </script>
 
 </body>
 
