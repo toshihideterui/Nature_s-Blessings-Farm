@@ -45,35 +45,47 @@
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
-      gap: 2px !important;
       background: transparent !important;
       border: none !important;
       cursor: pointer !important;
       padding: 0 !important;
       position: static !important;
+      gap: 0 !important;
     }
-    .sp-menu__close-btn span:nth-child(1) {
-      display: block !important;
-      width: 18px !important;
-      height: 2px !important;
-      background-color: #8ac253 !important;
-      transform: rotate(45deg) !important;
-      margin-bottom: -2px !important;
-    }
+    /* X部分: span1・2を重ねてXを作る */
+    .sp-menu__close-btn span:nth-child(1),
     .sp-menu__close-btn span:nth-child(2) {
       display: block !important;
-      width: 18px !important;
+      width: 20px !important;
       height: 2px !important;
       background-color: #8ac253 !important;
-      transform: rotate(-45deg) !important;
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      margin: 0 !important;
+    }
+    .sp-menu__close-btn span:nth-child(1) {
+      transform: translate(-50%, -50%) rotate(45deg) !important;
+    }
+    .sp-menu__close-btn span:nth-child(2) {
+      transform: translate(-50%, -50%) rotate(-45deg) !important;
+    }
+    /* Xアイコン用ラッパー */
+    .sp-menu__close-btn::before {
+      content: "" !important;
+      display: block !important;
+      width: 20px !important;
+      height: 20px !important;
+      position: relative !important;
     }
     .sp-menu__close-text {
       display: block !important;
       font-size: 9px !important;
       color: #8ac253 !important;
       font-weight: bold !important;
-      margin-top: 6px !important;
+      margin-top: 4px !important;
       letter-spacing: 0.05em !important;
+      line-height: 1 !important;
     }
 
     /* ナビ各行 */
