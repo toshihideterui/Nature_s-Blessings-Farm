@@ -24,6 +24,31 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
   <style>
+    /* SP メニュー修正 */
+
+    /* EN文字を右端に固定して縦揃え */
+    .sp-menu__nav ul li a {
+      display: grid !important;
+      grid-template-columns: 1fr auto auto !important;
+      align-items: center !important;
+    }
+    .sp-menu__en {
+      min-width: 80px !important;
+      text-align: right !important;
+      margin-left: 0 !important;
+      padding-right: 12px;
+    }
+
+    /* ×ボタンを右上に固定してメニュー項目と重ならないように */
+    .sp-menu__header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background-color: #fff;
+    }
+    .sp-menu__close-btn {
+      position: static !important;
+    }
     /* ========================================
        お知らせ一覧セクション
     ======================================== */
