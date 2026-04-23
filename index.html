@@ -614,12 +614,12 @@
     </div>
     <nav class="sp-menu__nav">
       <ul>
-        <li><a href="index.html"><span>トップ</span><span class="sp-menu__en">TOP</span></a></li>
-        <li><a href="#"><span>私たちについて</span><span class="sp-menu__en">ABOUT</span></a></li>
-        <li><a href="#"><span>よくあるご質問</span><span class="sp-menu__en">FAQ</span></a></li>
-        <li><a href="#"><span>活動紹介</span><span class="sp-menu__en">WORKS</span></a></li>
-        <li><a href="#"><span>お知らせ</span><span class="sp-menu__en">NEWS</span></a></li>
-        <li><a href="#"><span>アクセス</span><span class="sp-menu__en">ACCESS</span></a></li>
+        <li><a href="#top" class="sp-menu__link"><span>トップ</span><span class="sp-menu__en">TOP</span></a></li>
+        <li><a href="#about" class="sp-menu__link"><span>私たちについて</span><span class="sp-menu__en">ABOUT</span></a></li>
+        <li><a href="#faq" class="sp-menu__link"><span>よくあるご質問</span><span class="sp-menu__en">FAQ</span></a></li>
+        <li><a href="#works" class="sp-menu__link"><span>活動紹介</span><span class="sp-menu__en">WORKS</span></a></li>
+        <li><a href="#news" class="sp-menu__link"><span>お知らせ</span><span class="sp-menu__en">NEWS</span></a></li>
+        <li><a href="#access" class="sp-menu__link"><span>アクセス</span><span class="sp-menu__en">ACCESS</span></a></li>
       </ul>
     </nav>
     <div class="sp-menu__contact">
@@ -630,7 +630,7 @@
   </div>
 
   <main class="main">
-    <section class="FV">
+    <section class="FV" id="top">
       <div class="FV__scroll_down" id="type03">
         <a href="#">Scroll</a>
       </div>
@@ -645,7 +645,7 @@
       </div>
     </section>
 
-    <div class="nouen">
+    <div class="nouen" id="about">
       <div class="nouen__inner">
         <div class="nouen__inner--top">
           <div class="nouen__inner--image01">
@@ -682,7 +682,7 @@
       </div>
     </div>
 
-    <div class="katudosyokai">
+    <div class="katudosyokai" id="works">
       <div class="katudosyokai__inner">
         <h2>活動紹介</h2>
         <div class="line">
@@ -755,7 +755,7 @@
       </div>
     </div>
 
-    <div class="question">
+    <div class="question" id="faq">
       <div class="question__inner">
         <h2>よくあるご質問</h2>
         <div class="question__line">
@@ -880,7 +880,7 @@
       </div>
     </div>
 
-    <div class="access">
+    <div class="access" id="access">
       <h2>アクセス</h2>
       <div class="access__line">
         <img src="img/title-line.svg" alt="">
@@ -1130,6 +1130,17 @@
   <script src="js/script.js"></script>
   <script>
     $(document).ready(function () {
+      // SPメニュー：リンククリックでメニューを閉じてスクロール
+      $('.sp-menu__link').on('click', function(e) {
+        e.preventDefault();
+        const target = $(this).attr('href');
+        $('.sp-menu').removeClass('is-open');
+        setTimeout(function() {
+          const offset = $(target).offset().top - 60;
+          $('html, body').animate({ scrollTop: offset }, 400);
+        }, 200);
+      });
+
       // お知らせカテゴリタブ絞り込み
       $('.news-tab').on('click', function () {
         $('.news-tab').removeClass('is-active');
