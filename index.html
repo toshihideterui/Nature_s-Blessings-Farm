@@ -24,30 +24,99 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
   <style>
-    /* SP メニュー修正 */
+    /* ========================================
+       SP メニュー デザインカンプ通りに修正
+    ======================================== */
 
-    /* EN文字を右端に固定して縦揃え */
-    .sp-menu__nav ul li a {
-      display: grid !important;
-      grid-template-columns: 1fr auto auto !important;
-      align-items: center !important;
-    }
-    .sp-menu__en {
-      min-width: 80px !important;
-      text-align: right !important;
-      margin-left: 0 !important;
-      padding-right: 12px;
-    }
-
-    /* ×ボタンを右上に固定してメニュー項目と重ならないように */
+    /* ヘッダー行 */
     .sp-menu__header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background-color: #fff;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      padding: 12px 20px !important;
+      background-color: #fff !important;
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 10 !important;
     }
+
+    /* CLOSEボタン */
     .sp-menu__close-btn {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 2px !important;
+      background: transparent !important;
+      border: none !important;
+      cursor: pointer !important;
+      padding: 0 !important;
       position: static !important;
+    }
+    .sp-menu__close-btn span:nth-child(1) {
+      display: block !important;
+      width: 22px !important;
+      height: 2px !important;
+      background-color: #8ac253 !important;
+      transform: translateY(6px) rotate(45deg) !important;
+    }
+    .sp-menu__close-btn span:nth-child(2) {
+      display: block !important;
+      width: 22px !important;
+      height: 2px !important;
+      background-color: #8ac253 !important;
+      transform: rotate(-45deg) !important;
+    }
+    .sp-menu__close-text {
+      display: block !important;
+      font-size: 9px !important;
+      color: #8ac253 !important;
+      font-weight: bold !important;
+      margin-top: 6px !important;
+      letter-spacing: 0.05em !important;
+    }
+
+    /* ナビ各行 */
+    .sp-menu__nav ul li {
+      position: relative !important;
+      border-bottom: 1px solid #ddd !important;
+    }
+    .sp-menu__nav ul li a {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      gap: 10px !important;
+      padding: 22px 50px 22px 16px !important;
+      text-decoration: none !important;
+    }
+    .sp-menu__nav ul li a::after {
+      content:  !important;
+      position: absolute !important;
+      right: 16px !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      width: 28px !important;
+      height: 12px !important;
+      background:
+        linear-gradient(to right, #8ac253 100%, transparent 0) no-repeat center top 2px / 100% 2px,
+        linear-gradient(to right, #8ac253 100%, transparent 0) no-repeat center bottom 2px / 100% 2px !important;
+      border-right: 2px solid #8ac253 !important;
+    }
+
+    /* 日本語テキスト */
+    .sp-menu__nav ul li a > span:first-child {
+      font-size: 18px !important;
+      font-weight: bold !important;
+      color: #555 !important;
+      white-space: nowrap !important;
+    }
+
+    /* EN テキスト */
+    .sp-menu__en {
+      font-size: 12px !important;
+      color: #f7b560 !important;
+      font-weight: bold !important;
+      margin-left: 0 !important;
+      white-space: nowrap !important;
     }
     /* ========================================
        お知らせ一覧セクション
