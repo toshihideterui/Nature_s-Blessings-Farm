@@ -50,42 +50,19 @@
       cursor: pointer !important;
       padding: 0 !important;
       position: static !important;
-      gap: 0 !important;
+      gap: 4px !important;
     }
-    /* X部分: span1・2を重ねてXを作る */
-    .sp-menu__close-btn span:nth-child(1),
-    .sp-menu__close-btn span:nth-child(2) {
-      display: block !important;
-      width: 20px !important;
-      height: 2px !important;
-      background-color: #8ac253 !important;
-      position: absolute !important;
-      top: 50% !important;
-      left: 50% !important;
-      margin: 0 !important;
-    }
-    .sp-menu__close-btn span:nth-child(1) {
-      transform: translate(-50%, -50%) rotate(45deg) !important;
-    }
-    .sp-menu__close-btn span:nth-child(2) {
-      transform: translate(-50%, -50%) rotate(-45deg) !important;
-    }
-    /* Xアイコン用ラッパー */
     .sp-menu__close-btn::before {
-      content: "" !important;
-      display: block !important;
-      width: 20px !important;
-      height: 20px !important;
-      position: relative !important;
+      content: none !important;
     }
     .sp-menu__close-text {
       display: block !important;
       font-size: 9px !important;
       color: #8ac253 !important;
       font-weight: bold !important;
-      margin-top: 4px !important;
       letter-spacing: 0.05em !important;
       line-height: 1 !important;
+      margin-top: 0 !important;
     }
 
     /* ナビ各行 */
@@ -628,8 +605,10 @@
         </a>
       </div>
       <button class="sp-menu__close-btn" type="button">
-        <span></span>
-        <span></span>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="1" y1="1" x2="19" y2="19" stroke="#8ac253" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="19" y1="1" x2="1" y2="19" stroke="#8ac253" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
         <span class="sp-menu__close-text">CLOSE</span>
       </button>
     </div>
