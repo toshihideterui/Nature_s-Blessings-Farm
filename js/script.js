@@ -132,4 +132,28 @@ $(document).ready(function () {
     // ★修正: 要素の頭が画面下から100px入ったら発火（以前は全体が入らないとダメだった）
     return (elemTop <= docViewBottom - 100);
   }
-});
+});    $(document).ready(function () {
+      // SPメニュー：リンククリックでメニューを閉じてスクロール
+      $('.sp-menu__link').on('click', function(e) {
+        e.preventDefault();
+        const target = $(this).attr('href');
+        $('.sp-menu').removeClass('is-open');
+        setTimeout(function() {
+          const offset = $(target).offset().top - 60;
+          $('html, body').animate({ scrollTop: offset }, 400);
+        }, 200);
+      });
+
+      // お知らせカテゴリタブ絞り込み
+      $('.news-tab').on('click', function () {
+        $('.news-tab').removeClass('is-active');
+        $(this).addClass('is-active');
+        const cat = $(this).data('cat');
+        if (cat === 'all') {
+          $('.news-item').show();
+        } else {
+          $('.news-item').hide();
+          $('.news-item[data-cat="' + cat + '"]').show();
+        }
+      });
+    });
