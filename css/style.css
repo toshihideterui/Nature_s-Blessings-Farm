@@ -2894,3 +2894,36 @@ h2 {
     max-width: 280px;
   }
 }
+
+/* contact-thanks 電話番号横並び修正 */
+.thanks-box__tel-inline {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 8px;
+}
+.thanks-box__tel-label {
+  font-size: 16px;
+  color: #8ac253;
+  font-weight: bold;
+}
+.thanks-box__tel {
+  font-size: 36px;
+  font-weight: bold;
+  color: #8ac253;
+  font-family: 'Archivo Narrow', sans-serif;
+  letter-spacing: 0.1em;
+}
+/* タイトルと装飾線の間隔を縮める */
+.thanks-title {
+  margin-bottom: 4px !important;
+}
+@media (max-width: 767px) {
+  .thanks-box__tel {
+    font-size: 24px !important;
+  }
+  .thanks-box__tel-label {
+    font-size: 14px !important;
+  }
+}
