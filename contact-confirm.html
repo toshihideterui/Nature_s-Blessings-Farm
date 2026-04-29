@@ -93,7 +93,7 @@
             お問い合わせ種別
             <span class="confirm-item__required">必須</span>
           </div>
-          <p class="confirm-item__value">その他</p>
+          <p class="confirm-item__value" id="val-category"></p>
         </div>
 
         <!-- お名前 -->
@@ -102,7 +102,7 @@
             お名前
             <span class="confirm-item__required">必須</span>
           </div>
-          <p class="confirm-item__value">山田太郎</p>
+          <p class="confirm-item__value" id="val-name"></p>
         </div>
 
         <!-- メールアドレス -->
@@ -111,13 +111,13 @@
             メールアドレス
             <span class="confirm-item__required">必須</span>
           </div>
-          <p class="confirm-item__value">Tarou.yamada@gmail.com</p>
+          <p class="confirm-item__value" id="val-email"></p>
         </div>
 
         <!-- 電話番号 -->
         <div class="confirm-item">
           <div class="confirm-item__label">電話番号</div>
-          <p class="confirm-item__value">080-1234-5678</p>
+          <p class="confirm-item__value" id="val-tel"></p>
         </div>
 
         <!-- お問い合わせ内容 -->
@@ -126,12 +126,15 @@
             お問い合わせ内容
             <span class="confirm-item__required">必須</span>
           </div>
-          <p class="confirm-item__value">お問い合わせ内容が入ります。お問い合わせ内容が入ります。お問い合わせ内容が入ります。お問い合わせ内容が入ります。お問い合わせ内容が入ります。お問い合わせ内容が入ります。お問い合わせ内容が入ります。お問い合わせ内容が入ります。お問い合わせ内容が入ります。</p>
+          <p class="confirm-item__value" id="val-message" style="white-space:pre-wrap;"></p>
         </div>
 
         <!-- 送信ボタン -->
         <div class="confirm-btn-wrap">
-          <a href="contact-thanks.html" class="confirm-submit-btn">送信する</a>
+          <button type="button" class="confirm-submit-btn" onclick="
+            sessionStorage.clear();
+            window.location.href='contact-thanks.html';
+          ">送信する</button>
         </div>
 
       </div>
@@ -171,6 +174,28 @@
     </div>
   </footer>
 
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      var category = sessionStorage.getItem('contact_category') || '';
+      var name = sessionStorage.getItem('contact_name') || '';
+      var email = sessionStorage.getItem('contact_email') || '';
+      var tel = sessionStorage.getItem('contact_tel') || '';
+      var message = sessionStorage.getItem('contact_message') || '';
+
+      // カテゴリ名の変換
+      var categoryMap = {
+        '1': '農園体験について',
+        '2': '牧場見学について',
+        '3': 'お仕事のご相談',
+        '4': 'その他'
+      };
+      document.getElementById('val-category').textContent = categoryMap[category] || category;
+      document.getElementById('val-name').textContent = name;
+      document.getElementById('val-email').textContent = email;
+      document.getElementById('val-tel').textContent = tel || '（未入力）';
+      document.getElementById('val-message').textContent = message;
+    });
+  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script src="js/script.js"></script>

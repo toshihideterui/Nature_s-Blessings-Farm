@@ -654,7 +654,7 @@
         <p class="contact-form-section__lead">お仕事のご相談、農園体験、牧場の見学、その他ご質問など、お気軽にお問い合わせください。</p>
 
         <div class="contact-form-box">
-          <form action="#" method="post">
+          <form action="#" method="post" id="contact-form">
 
             <div class="form-group">
               <label class="form-label">
@@ -702,7 +702,7 @@
             </div>
 
             <div class="form-submit-wrap">
-              <button type="submit" class="form-submit-btn">確認する</button>
+              <button type="button" class="form-submit-btn" id="confirm-btn">確認する</button>
             </div>
 
           </form>
@@ -745,6 +745,31 @@
     </div>
   </footer>
 
+  <script>
+    document.getElementById('confirm-btn').addEventListener('click', function() {
+      var category = document.querySelector('[name="category"]').value;
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var tel = document.getElementById('tel').value;
+      var message = document.getElementById('message').value;
+
+      // 必須チェック
+      if (!category) { alert('お問い合わせ種別を選択してください。'); return; }
+      if (!name) { alert('お名前を入力してください。'); return; }
+      if (!email) { alert('メールアドレスを入力してください。'); return; }
+      if (!message) { alert('お問い合わせ内容を入力してください。'); return; }
+
+      // sessionStorageに保存
+      sessionStorage.setItem('contact_category', category);
+      sessionStorage.setItem('contact_name', name);
+      sessionStorage.setItem('contact_email', email);
+      sessionStorage.setItem('contact_tel', tel);
+      sessionStorage.setItem('contact_message', message);
+
+      // 確認ページへ遷移
+      window.location.href = 'contact-confirm.html';
+    });
+  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script src="js/script.js"></script>
@@ -780,6 +805,31 @@
 
 </html>
 
+  <script>
+    document.getElementById('confirm-btn').addEventListener('click', function() {
+      var category = document.querySelector('[name="category"]').value;
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var tel = document.getElementById('tel').value;
+      var message = document.getElementById('message').value;
+
+      // 必須チェック
+      if (!category) { alert('お問い合わせ種別を選択してください。'); return; }
+      if (!name) { alert('お名前を入力してください。'); return; }
+      if (!email) { alert('メールアドレスを入力してください。'); return; }
+      if (!message) { alert('お問い合わせ内容を入力してください。'); return; }
+
+      // sessionStorageに保存
+      sessionStorage.setItem('contact_category', category);
+      sessionStorage.setItem('contact_name', name);
+      sessionStorage.setItem('contact_email', email);
+      sessionStorage.setItem('contact_tel', tel);
+      sessionStorage.setItem('contact_message', message);
+
+      // 確認ページへ遷移
+      window.location.href = 'contact-confirm.html';
+    });
+  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script src="js/script.js"></script>
