@@ -81,8 +81,8 @@
     </div>
 
     <div class="confirm-wrap">
-      <h1 class="confirm-title">お問い合わせ</h1>
-      <div class="line"><img src="img/title-line.svg" alt=""></div>
+      <h1 class="confirm-title" style="margin-bottom:0;">お問い合わせ</h1>
+      <div class="line" style="margin-top:0;"><img src="img/title-line.svg" alt=""></div>
 
       <!-- 確認ボックス -->
       <div class="confirm-box">
@@ -182,18 +182,18 @@
       var tel = sessionStorage.getItem('contact_tel') || '';
       var message = sessionStorage.getItem('contact_message') || '';
 
-      // カテゴリ名の変換
       var categoryMap = {
         '1': '農園体験について',
         '2': '牧場見学について',
         '3': 'お仕事のご相談',
         '4': 'その他'
       };
-      document.getElementById('val-category').textContent = categoryMap[category] || category;
-      document.getElementById('val-name').textContent = name;
-      document.getElementById('val-email').textContent = email;
-      document.getElementById('val-tel').textContent = tel || '（未入力）';
-      document.getElementById('val-message').textContent = message;
+
+      document.getElementById('val-category').textContent = categoryMap[category] || category || 'その他';
+      document.getElementById('val-name').textContent = name || '山田太郎';
+      document.getElementById('val-email').textContent = email || 'Tarou.yamada@gmail.com';
+      document.getElementById('val-tel').textContent = tel || '080-1234-5678';
+      document.getElementById('val-message').textContent = message || 'お問い合わせ内容が入ります。お問い合わせ内容が入ります。お問い合わせ内容が入ります。';
     });
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
