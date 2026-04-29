@@ -1545,7 +1545,8 @@ h2 {
   }
 }
 .main .access .access__inner .access__right .access__right-row p {
-  line-height: 2;
+  line-height: 1.6;
+  margin-bottom: 16px;
 }
 @media (max-width: 767px) {
   .main .access .access__inner .access__right .access__right-row p {
