@@ -176,25 +176,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script src="js/script.js"></script>
-  <script>
-    document.getElementById('confirm-btn').addEventListener('click', function() {
-      var category = document.getElementById('category').value;
-      var name = document.getElementById('name').value;
-      var email = document.getElementById('email').value;
-      var tel = document.getElementById('tel').value;
-      var message = document.getElementById('message').value;
-      if (!category) { alert('お問い合わせ種別を選択してください。'); return; }
-      if (!name) { alert('お名前を入力してください。'); return; }
-      if (!email) { alert('メールアドレスを入力してください。'); return; }
-      if (!message) { alert('お問い合わせ内容を入力してください。'); return; }
-      sessionStorage.setItem('contact_category', category);
-      sessionStorage.setItem('contact_name', name);
-      sessionStorage.setItem('contact_email', email);
-      sessionStorage.setItem('contact_tel', tel);
-      sessionStorage.setItem('contact_message', message);
-      window.location.href = 'contact-confirm.html';
-    });
-  </script>
+  
 
+  <script src="script.js"></script>
 </body>
 </html>

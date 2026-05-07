@@ -174,31 +174,11 @@
     </div>
   </footer>
 
-  <script>
-    window.addEventListener('DOMContentLoaded', function() {
-      var category = sessionStorage.getItem('contact_category') || '';
-      var name = sessionStorage.getItem('contact_name') || '';
-      var email = sessionStorage.getItem('contact_email') || '';
-      var tel = sessionStorage.getItem('contact_tel') || '';
-      var message = sessionStorage.getItem('contact_message') || '';
-
-      var categoryMap = {
-        '1': '農園体験について',
-        '2': '牧場見学について',
-        '3': 'お仕事のご相談',
-        '4': 'その他'
-      };
-
-      document.getElementById('val-category').textContent = categoryMap[category] || category || 'その他';
-      document.getElementById('val-name').textContent = name || '山田太郎';
-      document.getElementById('val-email').textContent = email || 'Tarou.yamada@gmail.com';
-      document.getElementById('val-tel').textContent = tel || '080-1234-5678';
-      document.getElementById('val-message').textContent = message || 'お問い合わせ内容が入ります。お問い合わせ内容が入ります。お問い合わせ内容が入ります。';
-    });
-  </script>
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script src="js/script.js"></script>
 
+  <script src="script.js"></script>
 </body>
 </html>
