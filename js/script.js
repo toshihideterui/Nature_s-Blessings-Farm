@@ -1,3 +1,109 @@
+/* HTMLから移動 */
+document.getElementById('confirm-btn').addEventListener('click', function() {
+      var category = document.getElementById('category').value;
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var tel = document.getElementById('tel').value;
+      var message = document.getElementById('message').value;
+      if (!category) { alert('お問い合わせ種別を選択してください。'); return; }
+      if (!name) { alert('お名前を入力してください。'); return; }
+      if (!email) { alert('メールアドレスを入力してください。'); return; }
+      if (!message) { alert('お問い合わせ内容を入力してください。'); return; }
+      sessionStorage.setItem('contact_category', category);
+      sessionStorage.setItem('contact_name', name);
+      sessionStorage.setItem('contact_email', email);
+      sessionStorage.setItem('contact_tel', tel);
+      sessionStorage.setItem('contact_message', message);
+      window.location.href = 'contact-confirm.html';
+    });
+
+window.addEventListener('DOMContentLoaded', function() {
+      var category = sessionStorage.getItem('contact_category') || '';
+      var name = sessionStorage.getItem('contact_name') || '';
+      var email = sessionStorage.getItem('contact_email') || '';
+      var tel = sessionStorage.getItem('contact_tel') || '';
+      var message = sessionStorage.getItem('contact_message') || '';
+
+      var categoryMap = {
+        '1': '農園体験について',
+        '2': '牧場見学について',
+        '3': 'お仕事のご相談',
+        '4': 'その他'
+      };
+
+      document.getElementById('val-category').textContent = categoryMap[category] || category || 'その他';
+      document.getElementById('val-name').textContent = name || '山田太郎';
+      document.getElementById('val-email').textContent = email || 'Tarou.yamada@gmail.com';
+      document.getElementById('val-tel').textContent = tel || '080-1234-5678';
+      document.getElementById('val-message').textContent = message || 'お問い合わせ内容が入ります。お問い合わせ内容が入ります。お問い合わせ内容が入ります。';
+    });
+
+$(document).ready(function () {
+      // SPメニュー：リンククリックでメニューを閉じてスクロール
+      $('.sp-menu__link').on('click', function(e) {
+        e.preventDefault();
+        const target = $(this).attr('href');
+        $('.sp-menu').removeClass('is-open');
+        setTimeout(function() {
+          const offset = $(target).offset().top - 60;
+          $('html, body').animate({ scrollTop: offset }, 400);
+        }, 200);
+      });
+
+      // お知らせカテゴリタブ絞り込み
+      $('.news-tab').on('click', function () {
+        $('.news-tab').removeClass('is-active');
+        $(this).addClass('is-active');
+        const cat = $(this).data('cat');
+        if (cat === 'all') {
+          $('.news-item').show();
+        } else {
+          $('.news-item').hide();
+          $('.news-item[data-cat="' + cat + '"]').show();
+        }
+      });
+    });
+
+$(document).ready(function () {
+      // SPメニュー：リンククリックでメニューを閉じてスクロール
+      $('.sp-menu__link').on('click', function(e) {
+        e.preventDefault();
+        const target = $(this).attr('href');
+        $('.sp-menu').removeClass('is-open');
+        setTimeout(function() {
+          const offset = $(target).offset().top - 60;
+          $('html, body').animate({ scrollTop: offset }, 400);
+        }, 200);
+      });
+
+      // お知らせカテゴリタブ絞り込み
+      $('.news-tab').on('click', function () {
+        $('.news-tab').removeClass('is-active');
+        $(this).addClass('is-active');
+        const cat = $(this).data('cat');
+        if (cat === 'all') {
+          $('.news-item').show();
+        } else {
+          $('.news-item').hide();
+          $('.news-item[data-cat="' + cat + '"]').show();
+        }
+      });
+    });
+
+$(document).ready(function () {
+      $('.news-tab').on('click', function () {
+        $('.news-tab').removeClass('is-active');
+        $(this).addClass('is-active');
+        var cat = $(this).data('cat');
+        if (cat === 'all') {
+          $('.news-item').show();
+        } else {
+          $('.news-item').hide();
+          $('.news-item[data-cat="' + cat + '"]').show();
+        }
+      });
+    });
+
 $(document).ready(function () {
   
   // ------------------------------------
