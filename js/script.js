@@ -1,4 +1,3 @@
-/* HTMLから移動 */
 document.getElementById('confirm-btn').addEventListener('click', function() {
       var category = document.getElementById('category').value;
       var name = document.getElementById('name').value;
@@ -36,72 +35,6 @@ window.addEventListener('DOMContentLoaded', function() {
       document.getElementById('val-email').textContent = email || 'Tarou.yamada@gmail.com';
       document.getElementById('val-tel').textContent = tel || '080-1234-5678';
       document.getElementById('val-message').textContent = message || 'お問い合わせ内容が入ります。お問い合わせ内容が入ります。お問い合わせ内容が入ります。';
-    });
-
-$(document).ready(function () {
-      // SPメニュー：リンククリックでメニューを閉じてスクロール
-      $('.sp-menu__link').on('click', function(e) {
-        e.preventDefault();
-        const target = $(this).attr('href');
-        $('.sp-menu').removeClass('is-open');
-        setTimeout(function() {
-          const offset = $(target).offset().top - 60;
-          $('html, body').animate({ scrollTop: offset }, 400);
-        }, 200);
-      });
-
-      // お知らせカテゴリタブ絞り込み
-      $('.news-tab').on('click', function () {
-        $('.news-tab').removeClass('is-active');
-        $(this).addClass('is-active');
-        const cat = $(this).data('cat');
-        if (cat === 'all') {
-          $('.news-item').show();
-        } else {
-          $('.news-item').hide();
-          $('.news-item[data-cat="' + cat + '"]').show();
-        }
-      });
-    });
-
-$(document).ready(function () {
-      // SPメニュー：リンククリックでメニューを閉じてスクロール
-      $('.sp-menu__link').on('click', function(e) {
-        e.preventDefault();
-        const target = $(this).attr('href');
-        $('.sp-menu').removeClass('is-open');
-        setTimeout(function() {
-          const offset = $(target).offset().top - 60;
-          $('html, body').animate({ scrollTop: offset }, 400);
-        }, 200);
-      });
-
-      // お知らせカテゴリタブ絞り込み
-      $('.news-tab').on('click', function () {
-        $('.news-tab').removeClass('is-active');
-        $(this).addClass('is-active');
-        const cat = $(this).data('cat');
-        if (cat === 'all') {
-          $('.news-item').show();
-        } else {
-          $('.news-item').hide();
-          $('.news-item[data-cat="' + cat + '"]').show();
-        }
-      });
-    });
-
-$(document).ready(function () {
-      $('.news-tab').on('click', function () {
-        $('.news-tab').removeClass('is-active');
-        $(this).addClass('is-active');
-        var cat = $(this).data('cat');
-        if (cat === 'all') {
-          $('.news-item').show();
-        } else {
-          $('.news-item').hide();
-          $('.news-item[data-cat="' + cat + '"]').show();
-        }
-      });
     });
 
 $(document).ready(function () {
@@ -238,28 +171,4 @@ $(document).ready(function () {
     // ★修正: 要素の頭が画面下から100px入ったら発火（以前は全体が入らないとダメだった）
     return (elemTop <= docViewBottom - 100);
   }
-});    $(document).ready(function () {
-      // SPメニュー：リンククリックでメニューを閉じてスクロール
-      $('.sp-menu__link').on('click', function(e) {
-        e.preventDefault();
-        const target = $(this).attr('href');
-        $('.sp-menu').removeClass('is-open');
-        setTimeout(function() {
-          const offset = $(target).offset().top - 60;
-          $('html, body').animate({ scrollTop: offset }, 400);
-        }, 200);
-      });
-
-      // お知らせカテゴリタブ絞り込み
-      $('.news-tab').on('click', function () {
-        $('.news-tab').removeClass('is-active');
-        $(this).addClass('is-active');
-        const cat = $(this).data('cat');
-        if (cat === 'all') {
-          $('.news-item').show();
-        } else {
-          $('.news-item').hide();
-          $('.news-item[data-cat="' + cat + '"]').show();
-        }
-      });
-    });
+}
